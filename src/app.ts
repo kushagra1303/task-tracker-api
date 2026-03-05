@@ -2,10 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import authRoutes from "./routes/auth.routes";
+import taskRoutes from "./routes/task.routes";
 
 dotenv.config();
 
-const app = express();   // ← app defined here
+const app = express();  
 
 app.use(express.json());
 
@@ -17,6 +18,8 @@ app.get("/", (req, res) => {
 
 // register routes
 app.use("/api/auth", authRoutes);
+
+app.use("/api/tasks", taskRoutes);
 
 const PORT = process.env.PORT || 5000;
 
