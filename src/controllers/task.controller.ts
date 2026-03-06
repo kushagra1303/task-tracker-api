@@ -14,7 +14,6 @@ export const getTasks = async (req: any, res: Response) => {
     const cachedTasks = await redisClient.get(cacheKey);
 
     if (cachedTasks) {
-      console.log("Serving tasks from cache");
       return res.json(JSON.parse(cachedTasks));
     }
 

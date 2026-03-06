@@ -12,7 +12,7 @@ export const createUserTask = async (data: any, userId: string) => {
 };
 
 export const updateUserTask = async (taskId: string, data: any) => {
-  return await Task.findByIdAndUpdate(taskId, data, { new: true });
+  return await Task.findByIdAndUpdate(taskId, data, { returnDocument: "after" });
 };
 
 export const deleteUserTask = async (taskId: string) => {

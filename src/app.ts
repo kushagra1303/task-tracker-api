@@ -17,7 +17,6 @@ app.get("/", (req, res) => {
   res.send("Task Tracker API running");
 });
 
-// register routes
 app.use("/api/auth", authRoutes);
 
 app.use("/api/tasks", taskRoutes);
