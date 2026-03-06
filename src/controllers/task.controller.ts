@@ -8,17 +8,21 @@ import {
 import { redisClient } from "../config/redis";
 
 export const getTasks = async (req: any, res: Response) => {
-  try {
-    const cacheKey = `tasks:${req.user.id}`;
 
+  try {
+    const filters = {
+      status: req.query.status,
+      dueDate: req.query.dueDate
+    };
+
+    const cacheKey = `tasks:${req.user.id}:${JSON.stringify(filters)}`;
     const cachedTasks = await redisClient.get(cacheKey);
 
     if (cachedTasks) {
       return res.json(JSON.parse(cachedTasks));
     }
 
-    const tasks = await getUserTasks(req.user.id);
-
+    const tasks = await getUserTasks(req.user.id, filters);
     await redisClient.set(cacheKey, JSON.stringify(tasks), {
       EX: 60
     });

@@ -1,7 +1,17 @@
 import Task from "../models/task.model";
 
-export const getUserTasks = async (userId: string) => {
-  return await Task.find({ owner: userId });
+export const getUserTasks = async (
+  userId: string,
+  filters: any
+) => {
+  const query: any = { owner: userId };
+  if (filters.status) {
+    query.status = filters.status;
+  }
+  if (filters.dueDate) {
+    query.dueDate = filters.dueDate;
+  }
+  return await Task.find(query);
 };
 
 export const createUserTask = async (data: any, userId: string) => {
