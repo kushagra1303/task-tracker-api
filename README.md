@@ -105,10 +105,12 @@ npm install
 Create a `.env` file using `.env.example`.
 
 Example:
+```
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/tasktracker
 JWT_SECRET=your_secret_key
 REDIS_URL=redis://localhost:6379
+```
 
 ### 3. Start MongoDB
 mongod
@@ -133,7 +135,8 @@ npm run dev
 `POST /api/auth/signup`
 
 Request
-```{
+```
+{
   "name": "Kushagra",
   "email": "user@example.com",
   "password": "password123"
@@ -210,15 +213,19 @@ Task Deleted
 Tasks can be filtered using query parameters.
 
 Examples:
-**GET /api/tasks?status=pending**
-**GET /api/tasks?status=completed**
-**GET /api/tasks?dueDate=2026-03-10**
+```
+GET /api/tasks?status=pending
+GET /api/tasks?status=completed
+GET /api/tasks?dueDate=2026-03-10
+```
 
 Filtering works together with Redis caching using filter-aware cache keys.
 
 Example Redis keys:
-**tasks:<userId>:{"status":"pending"}**
-**tasks:<userId>:{"status":"completed"}**
+```
+tasks:<userId>:{"status":"pending"}
+tasks:<userId>:{"status":"completed"}
+```
 
 This ensures correct caching for filtered queries.
 
@@ -287,5 +294,4 @@ Lines: 100%
 
 ## Author
 
-Kushagra Bhargava
-Backend Developer
+Kushagra Bhargava | Backend Developer
